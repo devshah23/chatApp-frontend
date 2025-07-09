@@ -1,6 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { adminLogin, adminLogout, getAdmin } from "../thunks/admin";
+import { server } from "../../constants/config";
 import toast from "react-hot-toast";
+import axios from "axios";
 
 const initialState = {
   user: null,
@@ -39,7 +41,7 @@ const authSlice = createSlice({
           state.isAdmin = false;
         }
       })
-      .addCase(getAdmin.rejected, (state, action) => {
+      .addCase(getAdmin.rejected, (state) => {
         state.isAdmin = false;
       })
       .addCase(adminLogout.fulfilled, (state, action) => {
@@ -52,6 +54,18 @@ const authSlice = createSlice({
       });
   },
 });
+
+//fetch User Details
+export const fetchUser = () => async (dispatch) => {
+  try {
+    const { data } = await axios.get(`${server}/api/v1/user/me`, {
+      withCredentials: true,
+    });
+    dispatch(userExists(data.user));
+  } catch (error) {
+    dispatch(userNotExists());
+  }
+};
 
 export default authSlice;
 export const { userExists, userNotExists } = authSlice.actions;

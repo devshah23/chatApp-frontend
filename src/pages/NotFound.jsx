@@ -10,9 +10,13 @@ const NotFound = () => {
         spacing={"2rem"}
         justifyContent={"center"}
         height="100%">
-        <ErrorIcon sx={{ fontSize: "10rem" }} />
-        <Typography variant="h1">404</Typography>
-        <Typography variant="h3">Not Found</Typography>
+        <ErrorIcon sx={{ fontSize: "5rem", color: "red" }} />
+        <Typography variant="h2" sx={{ color: "red" }}>
+          404
+        </Typography>
+        <Typography variant="h3" sx={{ color: "red" }}>
+          Not Found
+        </Typography>
         <Link to="/">Go back to home</Link>
       </Stack>
     </Container>

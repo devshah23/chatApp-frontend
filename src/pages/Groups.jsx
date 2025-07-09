@@ -50,7 +50,7 @@ const Groups = () => {
   const dispatch = useDispatch();
 
   const { isAddMember } = useSelector((state) => state.misc);
-
+  console.log("chatId IS ", chatId, "\t", useSearchParams()[0]);
   const myGroups = useMyGroupsQuery("");
 
   const groupDetails = useChatDetailsQuery(

@@ -66,7 +66,7 @@ const Sidebar = ({ w = "100%" }) => {
   return (
     <Stack width={w} direction={"column"} p={"3rem"} spacing={"3rem"}>
       <Typography variant="h5" textTransform={"uppercase"}>
-        Chattu
+        Chat Pulse
       </Typography>
 
       <Stack spacing={"1rem"}>
@@ -80,8 +80,7 @@ const Sidebar = ({ w = "100%" }) => {
                 color: "white",
                 ":hover": { color: "white" },
               }
-            }
-          >
+            }>
             <Stack direction={"row"} alignItems={"center"} spacing={"1rem"}>
               {tab.icon}
 
@@ -121,8 +120,7 @@ const AdminLayout = ({ children }) => {
           position: "fixed",
           right: "1rem",
           top: "1rem",
-        }}
-      >
+        }}>
         <IconButton onClick={handleMobile}>
           {isMobile ? <CloseIcon /> : <MenuIcon />}
         </IconButton>
@@ -139,8 +137,7 @@ const AdminLayout = ({ children }) => {
         lg={9}
         sx={{
           bgcolor: grayColor,
-        }}
-      >
+        }}>
         {children}
       </Grid>
 

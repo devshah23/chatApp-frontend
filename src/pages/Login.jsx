@@ -2,8 +2,10 @@ import { useFileHandler, useInputValidation } from "6pp";
 import { CameraAlt as CameraAltIcon } from "@mui/icons-material";
 import {
   Avatar,
+  Box,
   Button,
   Container,
+  Grid,
   IconButton,
   Paper,
   Stack,
@@ -19,7 +21,6 @@ import { bgGradient } from "../constants/color";
 import { server } from "../constants/config";
 import { userExists } from "../redux/reducers/auth";
 import { usernameValidator } from "../utils/validators";
-
 const Login = () => {
   const [isLogin, setIsLogin] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
@@ -113,13 +114,19 @@ const Login = () => {
   return (
     <div
       style={{
-        backgroundImage: bgGradient,
+        display: "flex",
+        height: "100vh",
+        flexDirection: "row",
       }}>
+      <TypingLoginHeader />
+
       <Container
         component={"main"}
         maxWidth="xs"
         sx={{
-          height: "100vh",
+          background: bgGradient,
+          minHeight: "100vh",
+          maxWidth: { xs: "100%", sm: "100%", md: "40%" },
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
@@ -127,6 +134,18 @@ const Login = () => {
         <Paper
           elevation={3}
           sx={{
+            background: "rgba(255, 255, 255, 0.6)",
+            backdropFilter: "blur(12px)",
+            WebkitBackdropFilter: "blur(12px)",
+            borderRadius: "16px",
+            boxShadow: "0 8px 24px rgba(0, 0, 0, 0.15)",
+            maxWidth: 400,
+            width: {
+              xs: "100%",
+              sm: "90%",
+              md: 400,
+            },
+            margin: "auto",
             padding: 4,
             display: "flex",
             flexDirection: "column",
@@ -134,7 +153,9 @@ const Login = () => {
           }}>
           {isLogin ? (
             <>
-              <Typography variant="h5">Login</Typography>
+              <Typography variant="h4" color="#355E3B" fontWeight="bold">
+                LOGIN
+              </Typography>
               <form
                 style={{
                   width: "100%",
@@ -165,9 +186,13 @@ const Login = () => {
                 <Button
                   sx={{
                     marginTop: "1rem",
+                    backgroundColor: (theme) => theme.palette.button.main,
+                    color: (theme) => theme.palette.button.contrastText,
+                    "&:hover": {
+                      backgroundColor: "#228B22",
+                    },
                   }}
                   variant="contained"
-                  color="primary"
                   type="submit"
                   fullWidth
                   disabled={isLoading}>
@@ -182,8 +207,14 @@ const Login = () => {
                   disabled={isLoading}
                   fullWidth
                   variant="text"
-                  onClick={toggleLogin}>
-                  Sign Up Instead
+                  onClick={toggleLogin}
+                  sx={{
+                    color: (theme) => theme.palette.button.main,
+                    "&:hover": {
+                      backgroundColor: "#d7f2d3",
+                    },
+                  }}>
+                  Sign Up Now
                 </Button>
               </form>
             </>
@@ -314,6 +345,64 @@ const Login = () => {
         </Paper>
       </Container>
     </div>
+  );
+};
+
+const TypingLoginHeader = () => {
+  return (
+    <Grid
+      item
+      sx={{
+        display: { xs: "none", sm: "none", md: "block" },
+        width: { md: "85%", lg: "70%" },
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        position: "relative",
+      }}>
+      <Box
+        sx={{
+          width: "100%",
+          height: "100%",
+          backgroundImage:
+            "url('https://plus.unsplash.com/premium_photo-1684761949804-fd8eb9a5b6cc?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          color: "white",
+          textAlign: "center",
+          px: 2,
+        }}>
+        <Typography
+          variant="h3"
+          sx={{
+            color: "#355E3B",
+            fontWeight: "bold",
+            whiteSpace: "nowrap",
+            overflow: "hidden",
+            borderRight: "3px solid #355E3B",
+            width: "20ch",
+            animation:
+              "typing 3s steps(20) infinite alternate, blink 0.9s step-end infinite",
+            fontFamily: "monospace",
+          }}>
+          Pulse of Connection
+        </Typography>
+        <style>{`
+        @keyframes typing {
+          from { width: 0 }
+          to { width: 21ch }
+        }
+
+        @keyframes blink {
+          50% { border-color: transparent }
+        }
+      `}</style>
+      </Box>
+    </Grid>
   );
 };
 

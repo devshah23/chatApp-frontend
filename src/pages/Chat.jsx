@@ -183,11 +183,15 @@ const Chat = ({ chatId, user }) => {
         boxSizing={"border-box"}
         padding={"1rem"}
         spacing={"1rem"}
-        bgcolor={grayColor}
+        // bgcolor={grayColor}
         height={"90%"}
         sx={{
+          backgroundImage:
+            "url('https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/96e750b6-3aea-4888-983a-d8f0a10ca98d/di04w97-65e15894-7da7-4bd2-be97-0d757006cb9f.png/v1/fill/w_540%2Ch_981%2Cq_80%2Cstrp/signal_wallpaper_light__whatsapp_style__by_damirap_di04w97-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9OTgxIiwicGF0aCI6IlwvZlwvOTZlNzUwYjYtM2FlYS00ODg4LTk4M2EtZDhmMGExMGNhOThkXC9kaTA0dzk3LTY1ZTE1ODk0LTdkYTctNGJkMi1iZTk3LTBkNzU3MDA2Y2I5Zi5wbmciLCJ3aWR0aCI6Ijw9NTQwIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmltYWdlLm9wZXJhdGlvbnMiXX0.3MDLFYyOSTXtV4BXx56WkqVB_Ic3S5CaqXbnAmoS91c')",
           overflowX: "hidden",
           overflowY: "auto",
+          scrollbarWidth: "none",
+          msOverflowStyle: "none",
         }}>
         {allMessages.map((i) => (
           <MessageComponent key={i._id} message={i} user={user} />
@@ -208,12 +212,16 @@ const Chat = ({ chatId, user }) => {
           height={"100%"}
           padding={"1rem"}
           alignItems={"center"}
-          position={"relative"}>
+          position={"relative"}
+          sx={{
+            bgcolor: "#43484e",
+          }}>
           <IconButton
             sx={{
               position: "absolute",
               left: "1.5rem",
               rotate: "30deg",
+              color: "#6ea8fe",
             }}
             onClick={handleFileOpen}>
             <AttachFileIcon />
@@ -221,6 +229,15 @@ const Chat = ({ chatId, user }) => {
 
           <InputBox
             placeholder="Type Message Here..."
+            sx={{
+              fontSize: "1.025rem",
+              paddingLeft: "3rem",
+              width: "70%",
+              transition: "all 0.3s ease",
+              ":focus": {
+                width: "90%",
+              },
+            }}
             value={message}
             onChange={messageOnChange}
           />
@@ -229,12 +246,18 @@ const Chat = ({ chatId, user }) => {
             type="submit"
             sx={{
               rotate: "-30deg",
-              bgcolor: color,
-              color: "white",
-              marginLeft: "1rem",
-              padding: "0.5rem",
-              "&:hover": {
-                bgcolor: "error.dark",
+              backgroundColor: "rgba(255, 255, 255, 0.08)",
+              backdropFilter: "blur(6px)",
+              WebkitBackdropFilter: "blur(6px)",
+              color: "#6ea8fe",
+              borderRadius: "50%",
+              p: 1.2,
+              ml: "auto",
+              boxShadow: "0 2px 10px rgba(0,0,0,0.3)",
+              transition: "all 0.3s ease",
+              ":hover": {
+                backgroundColor: "rgba(255, 255, 255, 0.16)",
+                boxShadow: "0 4px 16px rgba(0,0,0,0.4)",
               },
             }}>
             <SendIcon />

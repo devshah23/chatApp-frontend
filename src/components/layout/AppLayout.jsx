@@ -150,7 +150,7 @@ const AppLayout = () => (WrappedComponent) => {
               display: { xs: "none", md: "block" },
               padding: "2rem",
               // bgcolor: "rgba(0,0,0,0.85)",
-              bgcolor: "#343434  ",
+              bgcolor: "#2a2f45",
             }}>
             <Profile user={user} />
           </Grid>

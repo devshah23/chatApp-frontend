@@ -7,7 +7,6 @@ import {
 } from "@mui/icons-material";
 import moment from "moment";
 import { transformImage } from "../../lib/features";
-import { color } from "framer-motion";
 
 const Profile = ({ user }) => {
   return (
@@ -19,7 +18,7 @@ const Profile = ({ user }) => {
           height: 200,
           objectFit: "contain",
           marginBottom: "1rem",
-          border: "5px solid white",
+          border: "3px solid white",
         }}
       />
       <ProfileCard heading={"Bio"} text={user?.bio} />

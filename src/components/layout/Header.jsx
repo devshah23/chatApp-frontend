@@ -76,12 +76,16 @@ const Header = () => {
   return (
     <>
       <Box
-        sx={{ flexGrow: 1, borderBottom: "1px  solid rgba(247,247,247,1)" }}
+        sx={{
+          flexGrow: 1,
+          borderBottom: "1px  solid rgba(247,247,247,1)",
+        }}
         height={"4.1rem"}>
         <AppBar
           position="static"
           sx={{
             bgcolor: color,
+            backdropFilter: " blur(10px)",
           }}>
           <Toolbar>
             <Typography

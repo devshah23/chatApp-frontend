@@ -24,13 +24,12 @@ const Link = styled(LinkComponent)`
 `;
 
 const InputBox = styled("input")`
-  width: 100%;
   height: 100%;
   border: none;
   outline: none;
   padding: 0 3rem;
   border-radius: 1.5rem;
-  background-color: ${grayColor};
+  background-color: #e0e0e0;
 `;
 
 const SearchField = styled("input")`
@@ -67,6 +66,11 @@ const BouncingSkeleton = styled(Skeleton)(() => ({
   animation: `${bounceAnimation} 1s infinite`,
 }));
 
+const RoundedSkeleton = styled(Skeleton)(() => ({
+  borderRadius: "12px",
+  backgroundColor: "#fff",
+}));
+
 export {
   CurveButton,
   SearchField,
@@ -74,4 +78,5 @@ export {
   Link,
   VisuallyHiddenInput,
   BouncingSkeleton,
+  RoundedSkeleton,
 };
