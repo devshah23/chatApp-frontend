@@ -220,11 +220,13 @@ const Login = () => {
             </>
           ) : (
             <>
-              <Typography variant="h5">Sign Up</Typography>
+              <Typography variant="h4" color="#355E3B" fontWeight="bold">
+                Sign Up
+              </Typography>
               <form
                 style={{
                   width: "100%",
-                  marginTop: "1rem",
+                  marginTop: "0.75rem",
                 }}
                 onSubmit={handleSignUp}>
                 <Stack position={"relative"} width={"10rem"} margin={"auto"}>
@@ -319,6 +321,11 @@ const Login = () => {
                 <Button
                   sx={{
                     marginTop: "1rem",
+                    backgroundColor: (theme) => theme.palette.button.main,
+                    color: (theme) => theme.palette.button.contrastText,
+                    "&:hover": {
+                      backgroundColor: "#228B22",
+                    },
                   }}
                   variant="contained"
                   color="primary"
@@ -333,6 +340,12 @@ const Login = () => {
                 </Typography>
 
                 <Button
+                  sx={{
+                    color: (theme) => theme.palette.button.main,
+                    "&:hover": {
+                      backgroundColor: "#d7f2d3",
+                    },
+                  }}
                   disabled={isLoading}
                   fullWidth
                   variant="text"

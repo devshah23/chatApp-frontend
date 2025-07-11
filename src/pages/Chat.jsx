@@ -2,7 +2,6 @@
 import { Fragment, useCallback, useEffect, useRef, useState } from "react";
 import AppLayout from "../components/layout/AppLayout";
 import { IconButton, Skeleton, Stack } from "@mui/material";
-import { grayColor, color } from "../constants/color";
 import {
   AttachFile as AttachFileIcon,
   Send as SendIcon,
@@ -26,16 +25,18 @@ import { useDispatch } from "react-redux";
 import { setIsFileMenu } from "../redux/reducers/misc";
 import { removeNewMessagesAlert } from "../redux/reducers/chat";
 import { TypingLoader } from "../components/layout/Loaders";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
-const Chat = ({ chatId, user }) => {
+const Chat = ({ user }) => {
   const socket = getSocket();
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const params = useParams();
 
   const containerRef = useRef(null);
   const bottomRef = useRef(null);
 
+  const chatId = params.chatId;
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
   const [page, setPage] = useState(1);
@@ -45,7 +46,7 @@ const Chat = ({ chatId, user }) => {
   const [userTyping, setUserTyping] = useState(false);
   const typingTimeout = useRef(null);
 
-  const chatDetails = useChatDetailsQuery({ chatId, skip: !chatId });
+  const chatDetails = useChatDetailsQuery({ chatId }, { skip: !chatId });
 
   const oldMessagesChunk = useGetMessagesQuery({ chatId, page });
 
@@ -89,8 +90,6 @@ const Chat = ({ chatId, user }) => {
     e.preventDefault();
 
     if (!message.trim()) return;
-
-    // Emitting the message to the server
     socket.emit(NEW_MESSAGE, { chatId, members, message });
     setMessage("");
   };
@@ -183,7 +182,6 @@ const Chat = ({ chatId, user }) => {
         boxSizing={"border-box"}
         padding={"1rem"}
         spacing={"1rem"}
-        // bgcolor={grayColor}
         height={"90%"}
         sx={{
           backgroundImage:
@@ -241,26 +239,30 @@ const Chat = ({ chatId, user }) => {
             value={message}
             onChange={messageOnChange}
           />
-
           <IconButton
             type="submit"
             sx={{
               rotate: "-30deg",
               backgroundColor: "rgba(255, 255, 255, 0.08)",
-              backdropFilter: "blur(6px)",
-              WebkitBackdropFilter: "blur(6px)",
-              color: "#6ea8fe",
+              backdropFilter: "blur(8px)",
+              WebkitBackdropFilter: "blur(8px)",
+              color: "#6ea8fe", // soft blue accent
               borderRadius: "50%",
-              p: 1.2,
+              p: 1.3,
               ml: "auto",
               boxShadow: "0 2px 10px rgba(0,0,0,0.3)",
-              transition: "all 0.3s ease",
+              transition: "all 0.25s ease-in-out",
               ":hover": {
-                backgroundColor: "rgba(255, 255, 255, 0.16)",
-                boxShadow: "0 4px 16px rgba(0,0,0,0.4)",
+                backgroundColor: "rgba(255, 255, 255, 0.15)",
+                boxShadow: "0 6px 16px rgba(0,0,0,0.35)",
+                transform: "scale(1.08) rotate(-30deg)",
+              },
+              ":active": {
+                transform: "scale(0.95) rotate(-30deg)",
+                boxShadow: "0 3px 8px rgba(0,0,0,0.25)",
               },
             }}>
-            <SendIcon />
+            <SendIcon sx={{ fontSize: "1.4rem" }} />
           </IconButton>
         </Stack>
       </form>

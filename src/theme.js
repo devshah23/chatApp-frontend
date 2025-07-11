@@ -26,10 +26,13 @@ const theme = createTheme({
             borderColor: "#46B36C",
           },
           input: {
-            color: "#355E3B",
+            color: "#72c965",
             fontWeight: 600,
             fontSize: "1rem",
             letterSpacing: "1.25px",
+            "&::label": {
+              color: "#46B36C",
+            },
           },
         },
       },
@@ -37,8 +40,9 @@ const theme = createTheme({
     MuiInputLabel: {
       styleOverrides: {
         root: {
+          color: "#72c965",
           "&.Mui-focused": {
-            color: "#46B36C",
+            color: "#72c965",
           },
         },
       },
