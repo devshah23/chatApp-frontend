@@ -161,7 +161,7 @@ const Chat = ({ user }) => {
   );
 
   const eventHandler = {
-    [ALERT]: alertListener,
+    [ALERT]: alertListener, //Event related to group management like welcome,left,removed
     [NEW_MESSAGE]: newMessagesListener,
     [START_TYPING]: startTypingListener,
     [STOP_TYPING]: stopTypingListener,
